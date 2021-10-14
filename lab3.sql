@@ -18,13 +18,13 @@ CREATE TABLE payment (
     cvc CHAR(3) NOT NULL,
     name VARCHAR(45) NOT NULL,
     PRIMARY KEY (id)
-) ENGINE = InnoDB;
+);
 
 CREATE TABLE security (
 	login VARCHAR(30) NOT NULL,
     password VARCHAR(45) NOT NULL,
     PRIMARY KEY (login)
-) ENGINE = InnoDB;
+);
 
 CREATE TABLE game (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -32,7 +32,7 @@ CREATE TABLE game (
     price VARCHAR(300),
     category VARCHAR(45) NOT NULL,
 	PRIMARY KEY (id)
-) ENGINE = InnoDB;
+);
 
 CREATE TABLE game_chat (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -43,7 +43,7 @@ CREATE TABLE game_chat (
     CONSTRAINT FK_game_chat_game
 		FOREIGN KEY (game_id)
 		REFERENCES game (id)
-) ENGINE = InnoDB;
+);
 
 CREATE TABLE message (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -54,7 +54,7 @@ CREATE TABLE message (
     CONSTRAINT FK_message_game_chat
 		FOREIGN KEY (game_chat_id)
 		REFERENCES game_chat (id)
-) ENGINE = InnoDB;
+);
 
 CREATE TABLE audio (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -64,7 +64,7 @@ CREATE TABLE audio (
 	CONSTRAINT FK_audio_game_chat
 		FOREIGN KEY (game_chat_id)
 		REFERENCES game_chat (id)
-) ENGINE = InnoDB;
+);
 
 CREATE TABLE media (
 	id INT NOT NULL AUTO_INCREMENT,
@@ -76,7 +76,7 @@ CREATE TABLE media (
 	CONSTRAINT FK_media_game_chat
 		FOREIGN KEY (game_chat_id)
 		REFERENCES game_chat (id)
-) ENGINE = InnoDB;
+);
 
 CREATE TABLE user (
 	id INT NOT NULL AUTO_INCREMENT,	
@@ -100,7 +100,7 @@ CREATE TABLE user (
 	CONSTRAINT FK_user_security
 		FOREIGN KEY (security_login)
         REFERENCES security (login)
-) ENGINE = InnoDB;
+);
 
 INSERT INTO payment (`card_number`, `expiration_date`, `cvc`, `name`) VALUES 
 	('4856385546', '3436', '463', 'Vitaliy'), 
