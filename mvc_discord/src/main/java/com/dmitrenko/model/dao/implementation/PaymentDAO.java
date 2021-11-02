@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentDAO implements AbstractDAO<Payment> {
-    private static final String GET_ALL = "SELECT * FROM student_project.payment";
-    private static final String GET_BY_ID = "SELECT * FROM student_project.payment WHERE id=?";
-    private static final String CREATE = "INSERT student_project.payment" +
+    private static final String GET_ALL = "SELECT * FROM dmitrenko.payment";
+    private static final String GET_BY_ID = "SELECT * FROM dmitrenko.payment WHERE id=?";
+    private static final String CREATE = "INSERT dmitrenko.payment" +
             "(`card_number`, `expiration_date`, `cvc`, `name`) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE student_project.payment" +
+    private static final String UPDATE = "UPDATE dmitrenko.payment" +
             "SET card_number=?, expiration_date=?, cvc=?, name=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM student_project.payment WHERE id=?";
+    private static final String DELETE = "DELETE FROM dmitrenko.payment WHERE id=?";
 
     @Override
     public List<Payment> findAll() throws SQLException {
@@ -28,7 +28,7 @@ public class PaymentDAO implements AbstractDAO<Payment> {
             while (resultSet.next()) {
                 Payment payment = new Payment(
                         resultSet.getInt("id"),
-                        resultSet.getInt("card_number"),
+                        resultSet.getLong("card_number"),
                         resultSet.getInt("expiration_date"),
                         resultSet.getInt("cvc"),
                         resultSet.getString("name")
@@ -51,7 +51,7 @@ public class PaymentDAO implements AbstractDAO<Payment> {
             while (resultSet.next()) {
                 payment = new Payment(
                         resultSet.getInt("id"),
-                        resultSet.getInt("card_number"),
+                        resultSet.getLong("card_number"),
                         resultSet.getInt("expiration_date"),
                         resultSet.getInt("cvc"),
                         resultSet.getString("name")
@@ -80,7 +80,7 @@ public class PaymentDAO implements AbstractDAO<Payment> {
     @Override
     public void update(Integer id, Payment payment) throws SQLException {
         try(PreparedStatement statement = ConnectionManager.getConnection().prepareStatement(UPDATE)) {
-            statement.setInt(1, payment.getCardNumber());
+            statement.setLong(1, payment.getCardNumber());
             statement.setInt(2, payment.getExpirationDate());
             statement.setInt(3, payment.getCvc());
             statement.setString(4, payment.getName());

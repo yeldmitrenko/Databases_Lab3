@@ -13,13 +13,13 @@ import java.util.List;
 
 public class GameChatDAO implements AbstractDAO<GameChat> {
 
-    private static final String GET_ALL = "SELECT * FROM student_project.game_chat";
-    private static final String GET_BY_ID = "SELECT * FROM student_project.game_chat WHERE id=?";
-    private static final String CREATE = "INSERT student_project.game_chat" +
+    private static final String GET_ALL = "SELECT * FROM dmitrenko.game_chat";
+    private static final String GET_BY_ID = "SELECT * FROM dmitrenko.game_chat WHERE id=?";
+    private static final String CREATE = "INSERT dmitrenko.game_chat" +
             "(`name`, `game_id`) VALUES (?, ?)";
-    private static final String UPDATE = "UPDATE student_project.game_chat" +
+    private static final String UPDATE = "UPDATE dmitrenko.game_chat" +
             "SET name=?, game_id=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM student_project.game_chat WHERE id=?";
+    private static final String DELETE = "DELETE FROM dmitrenko.game_chat WHERE id=?";
 
     @Override
     public List<GameChat> findAll() throws SQLException {

@@ -4,7 +4,6 @@ import com.dmitrenko.controller.implementation.*;
 import com.dmitrenko.model.entity.*;
 
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -100,7 +99,7 @@ public class MyView {
     //#########################################################################
 
     private void getAllPayments() throws SQLException {
-        System.out.println("\n" + paymentController.findAll() + "\n");
+        System.out.println(paymentController.findAll() + "\n");
     }
 
     private void getPaymentById() throws SQLException {
@@ -111,7 +110,7 @@ public class MyView {
 
     private Payment getPaymentInputs() {
         System.out.println("\nEnter card number: ");
-        Integer cardNumber = SCANNER.nextInt();
+        Long cardNumber = SCANNER.nextLong();
         System.out.println("Enter expiration date: ");
         Integer expirationDate = SCANNER.nextInt();
         System.out.println("Enter cvc: ");

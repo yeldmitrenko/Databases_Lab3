@@ -12,13 +12,13 @@ import java.util.List;
 
 public class AudioDAO implements AbstractDAO<Audio> {
 
-    private static final String GET_ALL = "SELECT * FROM student_project.audio";
-    private static final String GET_BY_ID = "SELECT * FROM student_project.audio WHERE id=?";
-    private static final String CREATE = "INSERT student_project.audio" +
+    private static final String GET_ALL = "SELECT * FROM dmitrenko.audio";
+    private static final String GET_BY_ID = "SELECT * FROM dmitrenko.audio WHERE id=?";
+    private static final String CREATE = "INSERT dmitrenko.audio" +
             "(`duration`, `game_chat_id`) VALUES (?, ?)";
-    private static final String UPDATE = "UPDATE student_project.audio" +
+    private static final String UPDATE = "UPDATE dmitrenko.audio" +
             "SET duration=?, game_chat_id=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM student_project.audio WHERE id=?";
+    private static final String DELETE = "DELETE FROM dmitrenko.audio WHERE id=?";
 
     @Override
     public List<Audio> findAll() throws SQLException {

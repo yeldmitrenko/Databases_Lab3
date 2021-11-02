@@ -8,12 +8,12 @@ import lombok.Setter;
 public class Payment {
 
     private Integer id;
-    private Integer cardNumber;
+    private Long cardNumber;
     private Integer expirationDate;
     private Integer cvc;
     private String name;
 
-    public Payment(Integer id, Integer cardNumber, Integer expirationDate, Integer cvc, String name) {
+    public Payment(Integer id, Long cardNumber, Integer expirationDate, Integer cvc, String name) {
         this.id = id;
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
@@ -21,7 +21,7 @@ public class Payment {
         this.name = name;
     }
 
-    public Payment(Integer cardNumber, Integer expirationDate, Integer cvc, String name) {
+    public Payment(Long cardNumber, Integer expirationDate, Integer cvc, String name) {
         this(null, cardNumber, expirationDate, cvc, name);
     }
 

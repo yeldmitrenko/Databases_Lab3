@@ -12,13 +12,13 @@ import java.util.List;
 
 public class SecurityDAO implements AbstractDAO<Security> {
 
-    private static final String GET_ALL = "SELECT * FROM student_project.security";
-    private static final String GET_BY_LOGIN = "SELECT * FROM student_project.security WHERE login=?";
-    private static final String CREATE = "INSERT student_project.security" +
+    private static final String GET_ALL = "SELECT * FROM dmitrenko.security";
+    private static final String GET_BY_LOGIN = "SELECT * FROM dmitrenko.security WHERE login=?";
+    private static final String CREATE = "INSERT dmitrenko.security" +
             "(`login`, `password`) VALUES (?, ?)";
-    private static final String UPDATE = "UPDATE student_project.security" +
+    private static final String UPDATE = "UPDATE dmitrenko.security" +
             "SET password=? WHERE login=?";
-    private static final String DELETE = "DELETE FROM student_project.security WHERE login=?";
+    private static final String DELETE = "DELETE FROM dmitrenko.security WHERE login=?";
 
     @Override
     public List<Security> findAll() throws SQLException {

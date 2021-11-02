@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameDAO implements AbstractDAO<Game> {
-    private static final String GET_ALL = "SELECT * FROM student_project.game";
-    private static final String GET_BY_ID = "SELECT * FROM student_project.game WHERE id=?";
-    private static final String CREATE = "INSERT student_project.game" +
+    private static final String GET_ALL = "SELECT * FROM dmitrenko.game";
+    private static final String GET_BY_ID = "SELECT * FROM dmitrenko.game WHERE id=?";
+    private static final String CREATE = "INSERT dmitrenko.game" +
             "(`name`, `price`, `category`) VALUES (?, ?, ?)";
-    private static final String UPDATE = "UPDATE student_project.game" +
+    private static final String UPDATE = "UPDATE dmitrenko.game" +
             "SET name=?, price=?, category=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM student_project.game WHERE id=?";
+    private static final String DELETE = "DELETE FROM dmitrenko.game WHERE id=?";
 
     @Override
     public List<Game> findAll() throws SQLException {

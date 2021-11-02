@@ -13,13 +13,13 @@ import java.util.List;
 
 public class MessageDAO implements AbstractDAO<Message> {
 
-    private static final String GET_ALL = "SELECT * FROM student_project.message";
-    private static final String GET_BY_ID = "SELECT * FROM student_project.message WHERE id=?";
-    private static final String CREATE = "INSERT student_project.message" +
+    private static final String GET_ALL = "SELECT * FROM dmitrenko.message";
+    private static final String GET_BY_ID = "SELECT * FROM dmitrenko.message WHERE id=?";
+    private static final String CREATE = "INSERT dmitrenko.message" +
             "(`date`, `message`, `game_chat_id`) VALUES (?, ?, ?)";
-    private static final String UPDATE = "UPDATE student_project.message" +
+    private static final String UPDATE = "UPDATE dmitrenko.message" +
             "SET date=?, message=?, game_chat_id=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM student_project.message WHERE id=?";
+    private static final String DELETE = "DELETE FROM dmitrenko.message WHERE id=?";
 
     @Override
     public List<Message> findAll() throws SQLException {

@@ -14,13 +14,13 @@ import java.util.List;
 
 public class MediaDAO implements AbstractDAO<Media> {
 
-    private static final String GET_ALL = "SELECT * FROM student_project.media";
-    private static final String GET_BY_ID = "SELECT * FROM student_project.media WHERE id=?";
-    private static final String CREATE = "INSERT student_project.media" +
+    private static final String GET_ALL = "SELECT * FROM dmitrenko.media";
+    private static final String GET_BY_ID = "SELECT * FROM dmitrenko.media WHERE id=?";
+    private static final String CREATE = "INSERT dmitrenko.media" +
             "(`name`, `size`, `date`, `game_chat_id`) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE student_project.media" +
+    private static final String UPDATE = "UPDATE dmitrenko.media" +
             "SET name=?, size=?, date=?, game_chat_id=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM student_project.media WHERE id=?";
+    private static final String DELETE = "DELETE FROM dmitrenko.media WHERE id=?";
 
     @Override
     public List<Media> findAll() throws SQLException {

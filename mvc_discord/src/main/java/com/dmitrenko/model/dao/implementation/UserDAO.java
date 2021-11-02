@@ -12,15 +12,15 @@ import java.util.List;
 
 public class UserDAO implements AbstractDAO<User> {
 
-    private static final String GET_ALL = "SELECT * FROM student_project.user";
-    private static final String GET_BY_ID = "SELECT * FROM student_project.user WHERE id=?";
-    private static final String CREATE = "INSERT student_project.user" +
+    private static final String GET_ALL = "SELECT * FROM dmitrenko.user";
+    private static final String GET_BY_ID = "SELECT * FROM dmitrenko.user WHERE id=?";
+    private static final String CREATE = "INSERT dmitrenko.user" +
             "(`name`, `surname`, `username`, `phone_number`, `inform`, `game_chat_id`, `payment_id`, `security_login`)" +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE student_project.user" +
+    private static final String UPDATE = "UPDATE dmitrenko.user" +
             "SET name=?, surname=?, username=?, phone_number=?, inform=?, game_chat_id=?, payment_id=?, security_login=?" +
             "WHERE id=?";
-    private static final String DELETE = "DELETE FROM student_project.user WHERE id=?";
+    private static final String DELETE = "DELETE FROM dmitrenko.user WHERE id=?";
 
     @Override
     public List<User> findAll() throws SQLException {
