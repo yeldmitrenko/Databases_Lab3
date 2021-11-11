@@ -71,8 +71,12 @@ public class MediaDAO implements AbstractDAO<Media> {
             Media media = session.get(Media.class, id);
             if (media != null) {
                 session.delete(media);
+                session.getTransaction().commit();
+                System.out.println("Media with ID = " + id + "was deleted\n");
             }
-            session.getTransaction().commit();
+            else  {
+                System.out.println("Nothing to delete");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

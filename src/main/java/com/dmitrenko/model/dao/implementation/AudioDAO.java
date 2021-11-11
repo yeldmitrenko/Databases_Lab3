@@ -21,6 +21,7 @@ public class AudioDAO implements AbstractDAO<Audio> {
             session.beginTransaction();
             audioList = session.createQuery("from Audio ").getResultList();
             session.getTransaction().commit();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,8 +70,12 @@ public class AudioDAO implements AbstractDAO<Audio> {
             Audio audio = session.get(Audio.class, id);
             if (audio != null) {
                 session.delete(audio);
+                session.getTransaction().commit();
+                System.out.println("Audio with ID = " + id + "was deleted\n");
             }
-            session.getTransaction().commit();
+            else  {
+                System.out.println("Nothing to delete");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -70,8 +70,12 @@ public class MessageDAO implements AbstractDAO<Message> {
             Message message = session.get(Message.class, id);
             if (message != null) {
                 session.delete(message);
+                session.getTransaction().commit();
+                System.out.println("Message with ID = " + id + "was deleted\n");
             }
-            session.getTransaction().commit();
+            else  {
+                System.out.println("Nothing to delete");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

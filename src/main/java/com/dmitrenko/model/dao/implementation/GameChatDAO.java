@@ -70,8 +70,13 @@ public class GameChatDAO implements AbstractDAO<GameChat> {
             GameChat gameChat = session.get(GameChat.class, id);
             if (gameChat != null) {
                 session.delete(gameChat);
+                session.getTransaction().commit();
+                System.out.println("Game chat with ID = " + id + "was deleted\n");
             }
-            session.getTransaction().commit();
+            else  {
+                System.out.println("Nothing to delete");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

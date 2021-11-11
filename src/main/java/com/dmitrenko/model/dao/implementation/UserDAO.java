@@ -70,8 +70,12 @@ public class UserDAO implements AbstractDAO<User> {
             User user = session.get(User.class, id);
             if (user != null) {
                 session.delete(user);
+                session.getTransaction().commit();
+                System.out.println("User with ID = " + id + "was deleted\n");
             }
-            session.getTransaction().commit();
+            else  {
+                System.out.println("Nothing to delete");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -139,7 +139,6 @@ public class MyView {
         System.out.println("\nEnter ID to delete the payment: ");
         Integer id = SCANNER.nextInt();
         paymentController.delete(id);
-        System.out.println("Payment with ID = " + id + "was deleted\n");
     }
 
     //########################################################################
@@ -182,7 +181,6 @@ public class MyView {
         System.out.println("\nEnter login to delete account: ");
         String login = SCANNER.next();
         securityController.delete(login);
-        System.out.println("Account with login: " + login + "was deleted\n");
     }
 
     //##################################################################################
@@ -227,7 +225,6 @@ public class MyView {
         System.out.println("\nEnter game ID to delete: ");
         Integer id = SCANNER.nextInt();
         gameController.delete(id);
-        System.out.println("Game with ID = " + id + "was deleted\n");
     }
 
     //#############################################################################
@@ -273,7 +270,6 @@ public class MyView {
         System.out.println("\nEnter ID to delete a game chat: ");
         Integer id = SCANNER.nextInt();
         gameChatController.delete(id);
-        System.out.println("Game chat with ID = " + id + "was deleted\n");
     }
 
     //#######################################################################################
@@ -321,7 +317,6 @@ public class MyView {
         System.out.println("\nEnter ID to delete message: ");
         Integer id = SCANNER.nextInt();
         messageController.delete(id);
-        System.out.println("Message with ID = " + id + "was deleted\n");
     }
 
     //################################################################################
@@ -367,7 +362,6 @@ public class MyView {
         System.out.println("\nEnter ID to delete audio: ");
         Integer id = SCANNER.nextInt();
         audioController.delete(id);
-        System.out.println("Audio with ID = " + id + "was deleted\n");
     }
 
     //####################################################################################
@@ -417,7 +411,6 @@ public class MyView {
         System.out.println("\nEnter ID to delete media: ");
         Integer id = SCANNER.nextInt();
         mediaController.delete(id);
-        System.out.println("Media with ID = " + id + "was deleted\n");
     }
 
     //##############################################################################
@@ -481,6 +474,5 @@ public class MyView {
         System.out.println("\nEnter ID to delete user: ");
         Integer id = SCANNER.nextInt();
         userController.delete(id);
-        System.out.println("User with ID = " + id + "was deleted\n");
     }
 }

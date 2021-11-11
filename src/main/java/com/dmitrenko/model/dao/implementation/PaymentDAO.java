@@ -70,8 +70,12 @@ public class PaymentDAO implements AbstractDAO<Payment> {
             Payment payment = session.get(Payment.class, id);
             if (payment != null) {
                 session.delete(payment);
+                session.getTransaction().commit();
+                System.out.println("Payment with ID = " + id + " was deleted\n");
             }
-            session.getTransaction().commit();
+            else  {
+                System.out.println("Nothing to delete");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

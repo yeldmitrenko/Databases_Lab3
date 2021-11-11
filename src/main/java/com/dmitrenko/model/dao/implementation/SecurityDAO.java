@@ -70,8 +70,12 @@ public class SecurityDAO implements AbstractDAO<Security> {
             Security security = session.get(Security.class, login);
             if (security != null) {
                 session.delete(security);
+                session.getTransaction().commit();
+                System.out.println("Account with login: " + login + "was deleted\n");
             }
-            session.getTransaction().commit();
+            else  {
+                System.out.println("Nothing to delete");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
