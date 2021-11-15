@@ -1,27 +1,35 @@
 package com.dmitrenko.service;
 
-import java.sql.SQLException;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.List;
 
-public interface AbstractService<E> {
-    List<E> findAll() throws SQLException;
+public abstract class AbstractService<T, ID> {
+    protected abstract JpaRepository<T, ID> getRepository();
 
-    default E findById(Integer id) throws SQLException {
-        return null;
+    public List<T> getAll() {
+        return getRepository().findAll();
     }
 
-    default void create(E entity) throws SQLException {}
-
-    default void update(Integer id, E entity) throws SQLException {}
-
-    default void delete(Integer id) throws SQLException {}
-
-
-    default E findByLogin(String login) throws SQLException {
-        return null;
+    public T getById(ID id) {
+        return getRepository().getById(id);
     }
 
-    default void update(String login, E entity) throws SQLException {}
+    public T create(T object) {
+        return getRepository().save(object);
+    }
 
-    default void delete(String login) throws SQLException {}
+    public T update(ID id, T object) {
+        if (getRepository().findById(id).isPresent()) {
+            return getRepository().save(object);
+        } else {
+            return null;
+        }
+    }
+
+    public void delete(ID id) {
+        if (getRepository().findById(id).isPresent()) {
+            getRepository().deleteById(id);
+        }
+    }
 }

@@ -1,27 +1,63 @@
 package com.dmitrenko.controller;
 
-import java.sql.SQLException;
+import com.dmitrenko.mapper.AbstractMapper;
+import com.dmitrenko.service.AbstractService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public interface AbstractController<E> {
+public abstract class AbstractController<T, DTO, ID> {
+    protected abstract AbstractService<T, ID> getService();
+    protected abstract AbstractMapper<T, DTO> getMapper();
 
-    List<E> findAll() throws SQLException;
-
-    default E findById(Integer id) throws SQLException {
-        return null;
+    @RequestMapping(method = RequestMethod.GET)
+    public @ResponseBody ResponseEntity<List<DTO>> getAll() {
+        List<T> objects = getService().getAll();
+        List<DTO> objectsDTO = new ArrayList<>();
+        for (T object : objects) {
+            objectsDTO.add(getMapper().mapObjectToDTO(object));
+        }
+        return new ResponseEntity<>(objectsDTO, HttpStatus.OK);
     }
 
-    default void create(E entity) throws SQLException {}
-
-    default void update(Integer id, E entity) throws SQLException {}
-
-    default void delete(Integer id) throws SQLException {}
-
-    default E findByLogin(String login) throws SQLException {
-        return null;
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}")
+    public @ResponseBody ResponseEntity<DTO> getById(@PathVariable ID id) {
+        T object = getService().getById(id);
+        if (object == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(getMapper().mapObjectToDTO(object), HttpStatus.OK);
+        }
     }
 
-    default void update(String login, E entity) throws SQLException {}
+    @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public @ResponseBody ResponseEntity<Void> create(@RequestBody T newObject) {
+        getService().create(newObject);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
-    default void delete(String login) throws SQLException {}
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public @ResponseBody ResponseEntity<T> update(@PathVariable ID id, @RequestBody T object) {
+        if (getService().getById(id) != null) {
+            getService().update(id, object);
+            return new ResponseEntity<>(getService().update(id, object), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable ID id) {
+        if (getService().getById(id) != null) {
+            getService().delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
