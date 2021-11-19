@@ -2,6 +2,7 @@ package com.dmitrenko.controller;
 
 import com.dmitrenko.mapper.AbstractMapper;
 import com.dmitrenko.service.AbstractService;
+import javassist.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,10 +28,10 @@ public abstract class AbstractController<T, DTO, ID> {
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     public @ResponseBody ResponseEntity<DTO> getById(@PathVariable ID id) {
         T object = getService().getById(id);
-        if (object == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
+        if (object != null) {
             return new ResponseEntity<>(getMapper().mapObjectToDTO(object), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -43,7 +44,8 @@ public abstract class AbstractController<T, DTO, ID> {
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}",
             consumes = {MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody ResponseEntity<T> update(@PathVariable ID id, @RequestBody T object) {
-        if (getService().getById(id) != null) {
+        object = getService().getById(id);
+        if (object != null) {
             getService().update(id, object);
             return new ResponseEntity<>(getService().update(id, object), HttpStatus.OK);
         } else {
@@ -52,8 +54,8 @@ public abstract class AbstractController<T, DTO, ID> {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable ID id) {
-        if (getService().getById(id) != null) {
+    public ResponseEntity<DTO> delete(@PathVariable ID id) {
+        if(getService().getById(id) != null) {
             getService().delete(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

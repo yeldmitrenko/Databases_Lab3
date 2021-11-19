@@ -12,7 +12,8 @@ public abstract class AbstractService<T, ID> {
     }
 
     public T getById(ID id) {
-        return getRepository().getById(id);
+        return getRepository().findById(id)
+                .orElse(null);
     }
 
     public T create(T object) {
@@ -20,16 +21,20 @@ public abstract class AbstractService<T, ID> {
     }
 
     public T update(ID id, T object) {
-        if (getRepository().findById(id).isPresent()) {
+        object = getRepository().getById(id);
+        if (object != null) {
             return getRepository().save(object);
         } else {
             return null;
         }
     }
 
-    public void delete(ID id) {
-        if (getRepository().findById(id).isPresent()) {
+    public T delete(ID id) {
+        T object = getRepository().getById(id);
+        if (object != null) {
             getRepository().deleteById(id);
+            return object;
         }
+        return null;
     }
 }

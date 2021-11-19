@@ -15,4 +15,14 @@ public class PaymentService extends AbstractService<Payment, Integer> {
     protected JpaRepository<Payment, Integer> getRepository() {
         return paymentRepository;
     }
+
+    public Payment update(Integer id, Payment payment) {
+        if (getRepository().findById(id).isPresent()) {
+            Payment payment1 = paymentRepository.findById(id).get();
+            payment1.setCardNumber(payment.getCardNumber());
+            return getRepository().save(payment1);
+        } else {
+            return null;
+        }
+    }
 }
