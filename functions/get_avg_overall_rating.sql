@@ -9,4 +9,3 @@ BEGIN
 END;
 SELECT * FROM student WHERE overall_rating < get_avg_overall_rating()//
 DELIMITER ;
-

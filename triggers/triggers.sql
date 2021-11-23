@@ -280,8 +280,6 @@ END //
 DELIMITER ;
 
 -- student_marked_debt
--- INSERT
--- UPDATE
 
 DROP TRIGGER IF EXISTS student_marked_debt_update;
 DELIMITER //
