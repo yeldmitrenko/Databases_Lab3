@@ -5,7 +5,7 @@ CREATE PROCEDURE create_tables()
 BEGIN
 	DECLARE done INT DEFAULT FALSE;
 	DECLARE name VARCHAR(45);
-	DECLARE city_cursor CURSOR FOR SELECT city.name FROM cite;
+	DECLARE city_cursor CURSOR FOR SELECT city.name FROM city;
 	DECLARE CONTINUE HANDLER FOR NOT FOUND
     SET done = TRUE;
 OPEN city_cursor;
