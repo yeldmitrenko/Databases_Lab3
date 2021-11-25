@@ -1,1 +1,1 @@
-# Databases_Lab3
+# JDBC
