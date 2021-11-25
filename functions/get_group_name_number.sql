@@ -13,3 +13,6 @@ BEGIN
     );
 END //
 DELIMITER ;
+
+SELECT name, surname, overall_rating, birthday_date, entry_date, student_number, email, city_id,
+	completed_secondary_education_id, student_group_id, student_marked_debt_id, get_group_name_number(id) FROM student;
