@@ -1,1 +1,1 @@
-# Databases_Lab3
+# Create database im mysql. Indexes.
