@@ -1,1 +1,1 @@
-# Create database im mysql. Indexes.
+# Create MySQL database. Indexes.
